@@ -25,7 +25,7 @@ public class User {
     private String dogImage;
 
     @Column(nullable = false)
-    private String password2;
+    private String password;
 
 
 
