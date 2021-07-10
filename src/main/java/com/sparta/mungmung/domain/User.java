@@ -27,6 +27,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-
+    public User(String userName, String dogName, String password){
+        this.userName = userName;
+        this.dogName = dogName;
+        this.password = password;
+    }
 
 }

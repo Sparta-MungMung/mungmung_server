@@ -11,12 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SubjectController {
 
-    private final SearchHospitalService searchHospitalService;
-
-    // 병원 검색
-    @GetMapping("/hospitals/search")
-    public void searchHospitals(@RequestParam String query){
-    }
-
 
 }

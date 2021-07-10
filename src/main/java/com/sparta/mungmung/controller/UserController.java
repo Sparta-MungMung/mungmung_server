@@ -21,7 +21,7 @@ public class UserController {
     //회원가입
     @PostMapping("/user/regist")
     public void userRegister(SignupRequestDto signupRequestDto){
-        return;
+        userService.registerUser(signupRequestDto);
     }
 
     // 마이페이지 정보
