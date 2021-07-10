@@ -28,7 +28,7 @@ public class HospitalController {
     //병원 상세 조회
     @GetMapping("/hospitals/{id}")
     public Hospital getHospital(@PathVariable(name = "id") Long hospitalId) {
-        return hospitalRepository.getById(hospitalId);
+        return hospitalRepository.findById(hospitalId).get();
     }
 
     //병원 위치 조회
