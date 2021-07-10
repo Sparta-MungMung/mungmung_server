@@ -19,10 +19,12 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final HospitalRepository hospitalRepository;
 
+    //리뷰 목록 조회
     public List<Review> findReview(Long hospitalId) {
         return reviewRepository.findAllByHospitalId(hospitalId);
     }
 
+    //리뷰 저장
     public void saveReview(ReviewRequestDto reviewRequestDto, Long hospitalId, Long userId) {
         reviewRequestDto.setHospitalId(hospitalId);
         reviewRequestDto.setUserId(userId);
@@ -32,6 +34,7 @@ public class ReviewService {
         updateHospitalRate(hospitalId, reviewRequestDto.getReviewRate());
     }
 
+    //리뷰 내용 업데이트
     @Transactional
     public void updateReview(Long reviewId, ReviewRequestDto reviewRequestDto) {
         Review review = reviewRepository.findById(reviewId).orElseThrow(
@@ -43,11 +46,13 @@ public class ReviewService {
         //updateHospitalRate(review.getHospitalId(), reviewRequestDto.getReviewRate());
     }
 
+    //리뷰 삭제
     @Transactional
     public void deleteReview(Long reviewId) {
         reviewRepository.deleteById(reviewId);
     }
 
+    //리뷰 별점 변경 시 병원 평점 업데이트 기능
     public void updateHospitalRate(Long hospitalId, Long reviewRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
         List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);

@@ -1,6 +1,5 @@
 package com.sparta.mungmung.domain;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +18,8 @@ public class Subject {
     @Column(nullable = false)
     private String subjectName;
 
-
     @ManyToMany
     @JoinColumn(nullable = false)
-    private List<Hospital> hospital;
+    private List<Hospital> hospitalList;
 
 }
