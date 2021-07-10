@@ -32,7 +32,7 @@ public class UserController {
     }
 
     //사진 저장
-    @PostMapping("/useringo/image")
+    @PostMapping("/userinfo/image")
     public void setImage(UserRequestDto userRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         userService.setImage(userRequestDto, userDetails.getUser());
     }
