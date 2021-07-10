@@ -1,13 +1,13 @@
 package com.sparta.mungmung.repository;
 
-import com.sparta.mungmung.domain.User;
+
+import com.sparta.mungmung.domain.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserId(Long userid);
-    Optional<User> findByUsername(String username);
+public interface SubjectRepository extends JpaRepository<Subject, Long> {
+    Optional<Subject> findBySubjectName(String subjectName);
 }

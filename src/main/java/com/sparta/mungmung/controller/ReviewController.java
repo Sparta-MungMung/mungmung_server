@@ -20,13 +20,13 @@ public class ReviewController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
 
-    //review 조회
+    //리뷰 조회
     @GetMapping("/hospital/{id}/reviews")
     public List<Review> getReviewList(@PathVariable(name = "id") Long hospitalId) {
         return reviewService.findReview(hospitalId);
     }
 
-    //review 작성
+    //리뷰 작성
     @PostMapping("/hospital/{id}/reviews")
     public void createReview(@PathVariable(name = "id") Long hospitalId, ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
@@ -37,7 +37,7 @@ public class ReviewController {
         }
     }
 
-    //review 수정
+    //리뷰 수정
     @PutMapping("/hospital/reviews/{id}")
     public void updateReview(@PathVariable(name = "id") Long reviewId, ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
        //작성자만 수정 button 볼 수 있으면 if문 삭제 예정
@@ -48,7 +48,7 @@ public class ReviewController {
         }
     }
 
-    //review 삭제
+    //리뷰 삭제
     @DeleteMapping("/hospital/reviews/{id}")
     public void deleteReview(@PathVariable(name = "id") Long reviewId, @AuthenticationPrincipal UserDetailsImpl userDetails ) {
         reviewService.deleteReview(reviewId);
