@@ -13,7 +13,8 @@ import javax.persistence.Column;
 public class ReviewRequestDto {
 
     private String reviewContent;
-    private Long postId;
+    private Long hospitalId;
     private Long userId;
+    private Long reviewRate;
 
 }

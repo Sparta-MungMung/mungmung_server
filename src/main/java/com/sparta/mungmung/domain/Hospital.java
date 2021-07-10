@@ -34,4 +34,10 @@ public class Hospital {
     private String hospitalImageSource;
 
 
+    public void updateHospitalRate(long reviewRate, int reviewCount) {
+        float rateSum = this.hospitalRate * (reviewCount - 1);
+        float newHospitalRate = (rateSum + reviewRate) / reviewCount;
+        this.hospitalRate = newHospitalRate;
+    }
+
 }

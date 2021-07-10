@@ -28,7 +28,10 @@ public class HospitalController {
     }
 
     @GetMapping("/hospitals/{id}/location")
-    public String getHospitalLocation(@PathVariable(name = "id") Long hospitalId){
+    public String getHospitalLocation(@PathVariable(name = "id") Long hospitalId) {
         return hospitalService.findHospitalLocation(hospitalId);
     }
+
+//    @GetMapping("hospital/search/{subject}")
+//    public List<Hospital> getSearchedHospital(@PathVariable String )
 }
