@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Review {
+public class Review extends TimeStamped {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
