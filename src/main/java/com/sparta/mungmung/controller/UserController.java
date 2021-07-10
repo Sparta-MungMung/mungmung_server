@@ -4,6 +4,7 @@ package com.sparta.mungmung.controller;
 
 import com.sparta.mungmung.dto.MyPageResponseDto;
 import com.sparta.mungmung.dto.SignupRequestDto;
+import com.sparta.mungmung.dto.UserRequestDto;
 import com.sparta.mungmung.security.UserDetailsImpl;
 import com.sparta.mungmung.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,9 @@ public class UserController {
         return userService.findUserInfo(userDetails.getUser());
     }
 
-
+    //사진 저장
+    @PostMapping("/useringo/image")
+    public void setImage(UserRequestDto userRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        userService.setImage(userRequestDto, userDetails.getUser());
+    }
 }

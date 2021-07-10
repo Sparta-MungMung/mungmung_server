@@ -3,11 +3,13 @@ package com.sparta.mungmung.service;
 import com.sparta.mungmung.domain.User;
 import com.sparta.mungmung.dto.MyPageResponseDto;
 import com.sparta.mungmung.dto.SignupRequestDto;
+import com.sparta.mungmung.dto.UserRequestDto;
 import com.sparta.mungmung.repository.ReservationRepository;
 import com.sparta.mungmung.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -55,6 +57,14 @@ public class UserService {
         userRepository.save(user);
 
 
+    }
+
+    @Transactional
+    public void setImage(UserRequestDto userRequestDto, User user){
+        User user1 = userRepository.findById(user.getUserId()).orElseThrow(
+                ()-> new NullPointerException("NO ID")
+        );
+        user1.update(userRequestDto);
     }
 
 }

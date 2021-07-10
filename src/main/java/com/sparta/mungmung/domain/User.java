@@ -1,6 +1,7 @@
 package com.sparta.mungmung.domain;
 
 
+import com.sparta.mungmung.dto.UserRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,4 +34,7 @@ public class User {
         this.password = password;
     }
 
+    public void update(UserRequestDto requestDto){
+        this.dogImage = requestDto.getDogImage();
+    }
 }
