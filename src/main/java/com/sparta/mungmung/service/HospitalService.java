@@ -25,7 +25,7 @@ public class HospitalService {
     public List<Hospital> findHospitalBySubjectName(String subjectName) {
         Optional<Subject> subject = subjectRepository.findBySubjectName(subjectName);
         if (subject.isPresent()) {
-            List<Hospital> findHospitalList = hospitalRepository.findAllBySubjectList(subject.get().getSubjectId());
+            List<Hospital> findHospitalList = hospitalRepository.findAllBySubject_list_subject_id(subject.get().getSubjectId());
             return findHospitalList;
         } else {
             return null;

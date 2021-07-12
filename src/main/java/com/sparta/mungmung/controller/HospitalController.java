@@ -37,8 +37,8 @@ public class HospitalController {
     }
 
     //병원 검색 목록 조회
-    @GetMapping("hospital/search")
-    public List<Hospital> getSearchedHospital(@RequestParam String subjectName){
+    @GetMapping("hospitals/search")
+    public List<Hospital> getSearchedHospital(@RequestParam(name = "query") String subjectName){
         if (hospitalService.findHospitalBySubjectName(subjectName) != null){
             return hospitalService.findHospitalBySubjectName(subjectName);
         } else {
