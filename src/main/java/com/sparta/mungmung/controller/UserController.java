@@ -49,7 +49,7 @@ public class UserController {
         userService.setImage(userRequestDto, userDetails.getUser());
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user")
     public String login(@RequestBody Map<String,String> user) {
         User member = userRepository.findByUserName(user.get("userName"))
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
