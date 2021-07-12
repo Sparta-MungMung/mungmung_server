@@ -28,7 +28,7 @@ public class User extends TimeStamped {
     @Column(nullable = false)
     private String password;
 
-    public User(String userName, String dogName, String password){
+    public User(String userName, String password, String dogName){
         this.userName = userName;
         this.dogName = dogName;
         this.password = password;
