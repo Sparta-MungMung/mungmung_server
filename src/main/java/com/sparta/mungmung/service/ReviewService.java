@@ -3,6 +3,7 @@ package com.sparta.mungmung.service;
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.domain.Review;
 import com.sparta.mungmung.dto.ReviewRequestDto;
+import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.HospitalRepository;
 import com.sparta.mungmung.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class ReviewService {
     @Transactional
     public void updateReview(Long reviewId, ReviewRequestDto reviewRequestDto) {
         Review review = reviewRepository.findById(reviewId).orElseThrow(
-                () -> new NullPointerException("등록된 review 없음")
+                () -> new ApiRequestException("등록된 review 없음")
         );
         review.update(reviewRequestDto);
 
@@ -55,7 +56,7 @@ public class ReviewService {
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
     public void updateHospitalRate(Long hospitalId, Long reviewRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
-        List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);
+        List<Review > reviewList = reviewRepository.findAllByHospitalId(hospitalId);
         int reviewCount = reviewList.size();
         hospital.updateHospitalRate(reviewRate, reviewCount);
     }
