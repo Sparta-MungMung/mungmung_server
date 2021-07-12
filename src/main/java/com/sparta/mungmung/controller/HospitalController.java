@@ -2,7 +2,6 @@ package com.sparta.mungmung.controller;
 
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.repository.HospitalRepository;
-import com.sparta.mungmung.repository.SubjectRepository;
 import com.sparta.mungmung.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

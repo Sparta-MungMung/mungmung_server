@@ -14,4 +14,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:18080","http://localhost:8180");
 
     }
+
 }

@@ -16,19 +16,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable();
 
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/user")
-                .loginProcessingUrl("/user")
-                .failureUrl("/user/login/error")
+                .loginProcessingUrl("/user/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()

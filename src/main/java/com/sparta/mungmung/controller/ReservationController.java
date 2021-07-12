@@ -6,6 +6,7 @@ import com.sparta.mungmung.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +17,7 @@ public class ReservationController {
 
     // 예약정보 저장
     @PostMapping("/reservations")
-    public void reservation(ReservationRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public void reservation(@RequestBody ReservationRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         reservationService.addReservation(requestDto, userDetails.getUser());
     }
 }
