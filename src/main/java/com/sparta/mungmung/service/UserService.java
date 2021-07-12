@@ -32,7 +32,7 @@ public class UserService {
     public void registerUser(SignupRequestDto requestDto){
         String username = requestDto.getUserName();
 
-        Optional<User> found = userRepository.findByUsername(username);
+        Optional<User> found = userRepository.findByUserName(username);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
