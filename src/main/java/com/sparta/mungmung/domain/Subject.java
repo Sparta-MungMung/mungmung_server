@@ -17,9 +17,4 @@ public class Subject {
 
     @Column(nullable = false)
     private String subjectName;
-
-    @ManyToMany
-    @JoinColumn(nullable = false)
-    private List<Hospital> hospitalList;
-
 }
