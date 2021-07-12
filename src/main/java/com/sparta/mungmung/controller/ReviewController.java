@@ -2,6 +2,7 @@ package com.sparta.mungmung.controller;
 
 import com.sparta.mungmung.domain.Review;
 import com.sparta.mungmung.dto.ReviewRequestDto;
+import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.ReviewRepository;
 import com.sparta.mungmung.security.UserDetailsImpl;
 import com.sparta.mungmung.service.ReviewService;
@@ -33,7 +34,7 @@ public class ReviewController {
             Long userId = userDetails.getUser().getUserId();
             reviewService.saveReview(reviewRequestDto, hospitalId, userId);
         } else {
-            // user login 안했을 때 반환해주는 것 구현 예정
+            throw new ApiRequestException("회원가입 후 리뷰 등록 가능합니다.");
         }
     }
 
@@ -44,7 +45,7 @@ public class ReviewController {
         if (userDetails != null) {
             reviewService.updateReview(reviewId, reviewRequestDto);
         } else {
-            // 예외처리
+            throw new ApiRequestException("회원가입 후 리뷰 수정 가능합니다.");
         }
     }
 
