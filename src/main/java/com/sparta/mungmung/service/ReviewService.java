@@ -2,6 +2,7 @@ package com.sparta.mungmung.service;
 
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.domain.Review;
+import com.sparta.mungmung.dto.ReviewPageResponseDto;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.HospitalRepository;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +19,20 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final HospitalRepository hospitalRepository;
+    private final ReviewPageResponseDto reviewPageResponseDto;
 
     //리뷰 목록 조회
-    public List<Review> findReview(Long hospitalId) {
-        return reviewRepository.findAllByHospitalId(hospitalId);
+    public ReviewPageResponseDto findReview(Long hospitalId, Long userId) {
+        List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);
+        reviewPageResponseDto.setUserId(userId);
+        reviewPageResponseDto.setReviewList(reviewList);
+        return reviewPageResponseDto;
+    }
+
+    public ReviewPageResponseDto findReview(Long hospitalId) {
+        List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);
+        reviewPageResponseDto.setReviewList(reviewList);
+        return reviewPageResponseDto;
     }
 
     //리뷰 저장
@@ -32,7 +42,7 @@ public class ReviewService {
         Review review = new Review(reviewRequestDto);
         reviewRepository.save(review);
 
-        updateHospitalRate(hospitalId, reviewRequestDto.getReviewRate());
+        updateHospitalRate(hospitalId, reviewRequestDto.getHospitalRate());
     }
 
     //리뷰 내용 업데이트
@@ -54,10 +64,10 @@ public class ReviewService {
     }
 
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
-    public void updateHospitalRate(Long hospitalId, Long reviewRate) {
+    public void updateHospitalRate(Long hospitalId, Long hospitalRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
         List<Review > reviewList = reviewRepository.findAllByHospitalId(hospitalId);
         int reviewCount = reviewList.size();
-        hospital.updateHospitalRate(reviewRate, reviewCount);
+        hospital.updateHospitalRate(hospitalRate, reviewCount);
     }
 }

@@ -1,6 +1,7 @@
 package com.sparta.mungmung.controller;
 
 import com.sparta.mungmung.domain.Review;
+import com.sparta.mungmung.dto.ReviewPageResponseDto;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.ReviewRepository;
@@ -23,7 +24,12 @@ public class ReviewController {
 
     //리뷰 조회
     @GetMapping("/hospitals/{id}/reviews")
-    public List<Review> getReviewList(@PathVariable(name = "id") Long hospitalId) {
+    public ReviewPageResponseDto getReviewList(@PathVariable(name = "id") Long hospitalId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        if (userDetails != null) {
+            Long userId = userDetails.getUser().getUserId();
+            return reviewService.findReview(hospitalId, userId);
+        }
+
         return reviewService.findReview(hospitalId);
     }
 

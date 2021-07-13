@@ -17,6 +17,6 @@ public class ReviewRequestDto {
     private String reviewContent;
     private Long hospitalId;
     private Long userId;
-    private Long reviewRate;
+    private Long hospitalRate;
 
 }

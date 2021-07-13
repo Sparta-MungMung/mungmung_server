@@ -26,17 +26,17 @@ public class Review extends TimeStamped {
     private Long userId;
 
     @Column(nullable = false)
-    private Long reviewRate;
+    private Long hospitalRate;
 
     public Review(ReviewRequestDto reviewRequestDto) {
         this.reviewContent = reviewRequestDto.getReviewContent();
         this.hospitalId = reviewRequestDto.getHospitalId();
         this.userId = reviewRequestDto.getUserId();
-        this.reviewRate = reviewRequestDto.getReviewRate();
+        this.hospitalRate = reviewRequestDto.getHospitalRate();
     }
 
     public void update(ReviewRequestDto reviewRequestDto) {
         this.reviewContent = reviewRequestDto.getReviewContent();
-        this.reviewRate = reviewRequestDto.getReviewRate();
+        this.hospitalRate = reviewRequestDto.getHospitalRate();
     }
 }

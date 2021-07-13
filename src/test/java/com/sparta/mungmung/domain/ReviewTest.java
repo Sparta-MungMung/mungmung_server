@@ -14,9 +14,9 @@ class ReviewTest {
         String reviewContent = "zhaps";
         Long hospitalId = 100L;
         Long userId = 102L;
-        Long reviewRate = 4L;
+        Long hospitalRate = 4L;
 
-        ReviewRequestDto requestDto = new ReviewRequestDto(reviewContent,hospitalId,userId, reviewRate);
+        ReviewRequestDto requestDto = new ReviewRequestDto(reviewContent,hospitalId,userId, hospitalRate);
 
 
         Review review = new Review(requestDto);
