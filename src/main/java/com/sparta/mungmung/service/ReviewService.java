@@ -32,7 +32,7 @@ public class ReviewService {
         Review review = new Review(reviewRequestDto);
         reviewRepository.save(review);
 
-        updateHospitalRate(hospitalId, reviewRequestDto.getReviewRate());
+        updateHospitalRate(hospitalId, reviewRequestDto.getHospitalRate());
     }
 
     //리뷰 내용 업데이트
@@ -44,7 +44,7 @@ public class ReviewService {
         review.update(reviewRequestDto);
 
         //hospitalRate update 기능 구현 예정
-        //updateHospitalRate(review.getHospitalId(), reviewRequestDto.getReviewRate());
+        //updateHospitalRate(review.getHospitalId(), reviewRequestDto.
     }
 
     //리뷰 삭제
@@ -54,10 +54,10 @@ public class ReviewService {
     }
 
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
-    public void updateHospitalRate(Long hospitalId, Long reviewRate) {
+    public void updateHospitalRate(Long hospitalId, Long hospitalRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
-        List<Review > reviewList = reviewRepository.findAllByOrderByHospitalIdDesc(hospitalId);
+        List<Review > reviewList = reviewRepository.findAllByHospitalId(hospitalId);
         int reviewCount = reviewList.size();
-        hospital.updateHospitalRate(reviewRate, reviewCount);
+        hospital.updateHospitalRate(hospitalRate, reviewCount);
     }
 }
