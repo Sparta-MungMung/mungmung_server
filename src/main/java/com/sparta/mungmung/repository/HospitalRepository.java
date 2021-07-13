@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
-    List<Hospital> findAllBySubject_list_subject_id(Long subjectId);
+    List<Hospital> findAllBySubjectList_SubjectId(Long subjectId);
 }
