@@ -54,7 +54,7 @@ public class ReviewService {
         review.update(reviewRequestDto);
 
         //hospitalRate update 기능 구현 예정
-        //updateHospitalRate(review.getHospitalId(), reviewRequestDto.getReviewRate());
+        //updateHospitalRate(review.getHospitalId(), reviewRequestDto.
     }
 
     //리뷰 삭제
