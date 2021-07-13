@@ -2,7 +2,6 @@ package com.sparta.mungmung.service;
 
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.domain.Review;
-import com.sparta.mungmung.dto.ReviewPageResponseDto;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.HospitalRepository;
@@ -19,7 +18,7 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final HospitalRepository hospitalRepository;
-    private final ReviewPageResponseDto reviewPageResponseDto;
+  
 
      //리뷰 목록 조회
     public List<Review> findReview(Long hospitalId) {
