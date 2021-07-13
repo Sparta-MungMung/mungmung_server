@@ -24,12 +24,7 @@ public class ReviewController {
 
     //리뷰 조회
     @GetMapping("/hospitals/{id}/reviews")
-    public ReviewPageResponseDto getReviewList(@PathVariable(name = "id") Long hospitalId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        if (userDetails != null) {
-            Long userId = userDetails.getUser().getUserId();
-            return reviewService.findReview(hospitalId, userId);
-        }
-
+    public List<Review> getReviewList(@PathVariable(name = "id") Long hospitalId) {
         return reviewService.findReview(hospitalId);
     }
 
