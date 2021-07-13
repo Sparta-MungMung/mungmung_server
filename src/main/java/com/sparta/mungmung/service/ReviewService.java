@@ -21,18 +21,9 @@ public class ReviewService {
     private final HospitalRepository hospitalRepository;
     private final ReviewPageResponseDto reviewPageResponseDto;
 
-    //리뷰 목록 조회
-    public ReviewPageResponseDto findReview(Long hospitalId, Long userId) {
-        List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);
-        reviewPageResponseDto.setUserId(userId);
-        reviewPageResponseDto.setReviewList(reviewList);
-        return reviewPageResponseDto;
-    }
-
-    public ReviewPageResponseDto findReview(Long hospitalId) {
-        List<Review> reviewList = reviewRepository.findAllByHospitalId(hospitalId);
-        reviewPageResponseDto.setReviewList(reviewList);
-        return reviewPageResponseDto;
+     //리뷰 목록 조회
+    public List<Review> findReview(Long hospitalId) {
+        return reviewRepository.findAllByHospitalId(hospitalId);
     }
 
     //리뷰 저장
