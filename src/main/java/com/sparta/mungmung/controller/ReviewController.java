@@ -29,7 +29,7 @@ public class ReviewController {
 
     //리뷰 작성
     @PostMapping("/hospitals/{id}/reviews")
-    public void createReview(@PathVariable(name = "id") Long hospitalId, ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public void createReview(@PathVariable(name = "id") Long hospitalId,@RequestBody ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
             Long userId = userDetails.getUser().getUserId();
             reviewService.saveReview(reviewRequestDto, hospitalId, userId);
@@ -40,7 +40,7 @@ public class ReviewController {
 
     //리뷰 수정
     @PutMapping("/hospitals/reviews/{id}")
-    public void updateReview(@PathVariable(name = "id") Long reviewId, ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public void updateReview(@PathVariable(name = "id") Long reviewId,@RequestBody ReviewRequestDto reviewRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
        //작성자만 수정 button 볼 수 있으면 if문 삭제 예정
         if (userDetails != null) {
             reviewService.updateReview(reviewId, reviewRequestDto);
