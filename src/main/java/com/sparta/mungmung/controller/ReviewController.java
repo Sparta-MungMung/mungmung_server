@@ -1,7 +1,6 @@
 package com.sparta.mungmung.controller;
 
 import com.sparta.mungmung.domain.Review;
-import com.sparta.mungmung.dto.ReviewPageResponseDto;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.ReviewRepository;

@@ -2,7 +2,6 @@ package com.sparta.mungmung.service;
 
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.domain.Review;
-import com.sparta.mungmung.dto.ReviewPageResponseDto;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.HospitalRepository;
@@ -19,11 +18,10 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final HospitalRepository hospitalRepository;
-    private final ReviewPageResponseDto reviewPageResponseDto;
 
      //리뷰 목록 조회
     public List<Review> findReview(Long hospitalId) {
-        return reviewRepository.findAllByHospitalId(hospitalId);
+        return reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
     }
 
     //리뷰 저장
@@ -57,7 +55,7 @@ public class ReviewService {
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
     public void updateHospitalRate(Long hospitalId, Long hospitalRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
-        List<Review > reviewList = reviewRepository.findAllByHospitalId(hospitalId);
+        List<Review > reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
         int reviewCount = reviewList.size();
         hospital.updateHospitalRate(hospitalRate, reviewCount);
     }
