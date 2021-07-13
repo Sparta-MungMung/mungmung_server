@@ -10,3 +10,4 @@ import java.util.List;
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
     List<Hospital> findAllBySubjectList_SubjectId(Long subjectId);
 }
+
