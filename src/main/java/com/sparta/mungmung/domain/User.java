@@ -37,4 +37,8 @@ public class User extends TimeStamped {
     public void update(UserRequestDto requestDto){
         this.dogImage = requestDto.getDogImage();
     }
+
+    public void updateDogImage(String dogImage){
+        this.dogImage = dogImage;
+    }
 }
