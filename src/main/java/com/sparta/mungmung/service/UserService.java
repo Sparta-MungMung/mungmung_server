@@ -8,6 +8,7 @@ import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.ReservationRepository;
 import com.sparta.mungmung.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,7 +20,7 @@ public class UserService {
 
 
     private final UserRepository userRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     public void registerUser(SignupRequestDto requestDto){
         String username = requestDto.getUserName();
@@ -44,6 +45,8 @@ public class UserService {
             throw new ApiRequestException("패스워드를 입력해 주세요.");
         }
         String dogName = requestDto.getDogName();
+        // 패스워드 인코딩
+        password = passwordEncoder.encode(password);
 
         User user = new User(username,password,dogName);
         userRepository.save(user);

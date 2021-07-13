@@ -11,6 +11,7 @@ public class ReservationRequestDto {
 
     private String reservationDetail;
     private String reservationDate;
+    private String dogName;
     private Long hospitalId;
 
 }
