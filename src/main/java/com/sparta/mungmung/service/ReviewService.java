@@ -56,7 +56,7 @@ public class ReviewService {
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
     public void updateHospitalRate(Long hospitalId, Long reviewRate) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
-        List<Review > reviewList = reviewRepository.findAllByHospitalId(hospitalId);
+        List<Review > reviewList = reviewRepository.findAllByOrderByHospitalIdDesc(hospitalId);
         int reviewCount = reviewList.size();
         hospital.updateHospitalRate(reviewRate, reviewCount);
     }
