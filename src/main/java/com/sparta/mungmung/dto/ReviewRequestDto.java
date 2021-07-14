@@ -18,5 +18,6 @@ public class ReviewRequestDto {
     private Long hospitalId;
     private Long userId;
     private Long hospitalRate;
+    private String dogImage;
 
 }

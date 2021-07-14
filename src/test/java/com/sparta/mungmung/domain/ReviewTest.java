@@ -16,9 +16,9 @@ class ReviewTest {
         Long userId = 102L;
         Long hospitalRate = 4L;
 
-        ReviewRequestDto requestDto = new ReviewRequestDto(reviewContent,hospitalId,userId, hospitalRate);
+//        ReviewRequestDto requestDto = new ReviewRequestDto(reviewContent,hospitalId,userId, hospitalRate);
 
 
-        Review review = new Review(requestDto);
+//        Review review = new Review(requestDto);
     }
 }
