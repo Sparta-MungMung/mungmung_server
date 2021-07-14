@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
@@ -38,7 +40,8 @@ public class HospitalController {
 
     //병원 검색 목록 조회
     @GetMapping("hospitals/search")
-    public List<Hospital> getSearchedHospital(@RequestParam(name = "query") String subjectName){
+    public List<Hospital> getSearchedHospital(@RequestParam(name = "subject") String encodedSubjectName) throws UnsupportedEncodingException {
+        String subjectName = URLDecoder.decode(encodedSubjectName, "UTF-8");
         if (hospitalService.findHospitalBySubjectName(subjectName) != null){
             return hospitalService.findHospitalBySubjectName(subjectName);
         } else {

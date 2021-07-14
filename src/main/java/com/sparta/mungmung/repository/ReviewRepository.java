@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    List<Review> findAllByHospitalId(Long hospitalId);
+    List<Review> findAllByHospitalIdOrderByModifiedAtDesc(Long hospitalId);
+
 }

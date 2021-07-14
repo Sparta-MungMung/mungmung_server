@@ -32,15 +32,15 @@ public class Hospital {
     @Column(nullable = false)
     private String hospitalNumber;
 
-    @Column(nullable = false)
-    private String hospitalImageSource;
+    @OneToMany
+    private List<HospitalImage> hospitalImageList;
 
     @ManyToMany
     private List<Subject> subjectList;
 
-    public void updateHospitalRate(long reviewRate, int reviewCount) {
+    public void updateHospitalRate(long hospitalRate, int reviewCount) {
         float rateSum = this.hospitalRate * (reviewCount - 1);
-        float newHospitalRate = (rateSum + reviewRate) / reviewCount;
+        float newHospitalRate = (rateSum + hospitalRate) / reviewCount;
         this.hospitalRate = newHospitalRate;
     }
 

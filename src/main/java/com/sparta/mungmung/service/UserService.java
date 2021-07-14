@@ -68,10 +68,22 @@ public class UserService {
         user1.update(userRequestDto);
     }
 
+
     public String createToken(UserRequestDto user) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         return jwtTokenProvider.createToken(authentication);
     }
+
+    @Transactional
+    public void setDogImage(String image, Long userId){
+        User user = userRepository.findById(userId).orElseThrow(
+                ()-> new NullPointerException("NO ID")
+        );
+        user.updateDogImage(image);
+    }
+
+
+
 }
