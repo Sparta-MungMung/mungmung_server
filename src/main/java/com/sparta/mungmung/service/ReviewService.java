@@ -34,11 +34,12 @@ public class ReviewService {
         reviewRequestDto.setUserId(userId);
         Optional<User> user = userRepository.findById(userId);
         reviewRequestDto.setDogImage(user.get().getDogImage());
+        reviewRequestDto.setDogName(user.get().getDogName());
 
         Review review = new Review(reviewRequestDto);
         reviewRepository.save(review);
 
-        updateHospitalRate(hospitalId, reviewRequestDto.getHospitalRate());
+        updateHospitalRate(hospitalId);
     }
 
     //리뷰 내용 업데이트
@@ -49,8 +50,7 @@ public class ReviewService {
         );
         review.update(reviewRequestDto);
 
-        //hospitalRate update 기능 구현 예정
-        //updateHospitalRate(review.getHospitalId(), reviewRequestDto.
+        updateHospitalRate(review.getHospitalId());
     }
 
     //리뷰 삭제
@@ -60,10 +60,18 @@ public class ReviewService {
     }
 
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
-    public void updateHospitalRate(Long hospitalId, Long hospitalRate) {
+    @Transactional
+    public void updateHospitalRate(Long hospitalId) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
-        List<Review > reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
+        List<Review> reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
+        int hospitalRateSum = 0;
+        for(Review review: reviewList){
+            hospitalRateSum += review.getHospitalRate();
+        }
         int reviewCount = reviewList.size();
-        hospital.updateHospitalRate(hospitalRate, reviewCount);
+        float hospitalAverageRate = hospitalRateSum / reviewCount;
+        hospital.updateHospitalRate(hospitalAverageRate);
     }
+
+
 }

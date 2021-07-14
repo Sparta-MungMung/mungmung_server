@@ -38,13 +38,13 @@ public class Hospital {
     @ManyToMany
     private List<Subject> subjectList;
 
-    public void updateHospitalRate(long hospitalRate, int reviewCount) {
-        float rateSum = this.hospitalRate * (reviewCount - 1);
-        float newHospitalRate = (rateSum + hospitalRate) / reviewCount;
-        this.hospitalRate = newHospitalRate;
+    public void updateHospitalRate(float hospitalAverageRate) {
+        this.hospitalRate = hospitalAverageRate;
     }
     public String getHospitalName(){
         return this.hospitalName;
     }
+
+
 
 }
