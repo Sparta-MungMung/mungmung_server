@@ -62,4 +62,13 @@ public class UserService {
         user1.update(userRequestDto);
     }
 
+    @Transactional
+    public void setDogImage(String image, Long userId){
+        User user = userRepository.findById(userId).orElseThrow(
+                ()-> new NullPointerException("NO ID")
+        );
+        user.updateDogImage(image);
+    }
+
+
 }
