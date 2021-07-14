@@ -32,8 +32,8 @@ public class Hospital {
     @Column(nullable = false)
     private String hospitalNumber;
 
-    @Column(nullable = false)
-    private String hospitalImageSource;
+    @OneToMany
+    private List<HospitalImage> hospitalImageList;
 
     @ManyToMany
     private List<Subject> subjectList;
