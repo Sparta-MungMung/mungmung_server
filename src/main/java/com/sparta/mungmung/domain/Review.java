@@ -29,6 +29,9 @@ public class Review extends TimeStamped {
     private String dogImage;
 
     @Column(nullable = false)
+    private String dogName;
+
+    @Column(nullable = false)
     private Long hospitalRate;
 
     public Review(ReviewRequestDto reviewRequestDto) {
@@ -37,6 +40,7 @@ public class Review extends TimeStamped {
         this.userId = reviewRequestDto.getUserId();
         this.hospitalRate = reviewRequestDto.getHospitalRate();
         this.dogImage = reviewRequestDto.getDogImage();
+        this.dogName = reviewRequestDto.getDogName();
     }
 
     public void update(ReviewRequestDto reviewRequestDto) {

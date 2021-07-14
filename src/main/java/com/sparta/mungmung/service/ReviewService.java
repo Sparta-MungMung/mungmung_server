@@ -34,6 +34,7 @@ public class ReviewService {
         reviewRequestDto.setUserId(userId);
         Optional<User> user = userRepository.findById(userId);
         reviewRequestDto.setDogImage(user.get().getDogImage());
+        reviewRequestDto.setDogName(user.get().getDogName());
 
         Review review = new Review(reviewRequestDto);
         reviewRepository.save(review);
