@@ -43,5 +43,8 @@ public class Hospital {
         float newHospitalRate = (rateSum + hospitalRate) / reviewCount;
         this.hospitalRate = newHospitalRate;
     }
+    public String getHospitalName(){
+        return this.hospitalName;
+    }
 
 }
