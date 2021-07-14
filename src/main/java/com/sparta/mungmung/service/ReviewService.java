@@ -41,6 +41,7 @@ public class ReviewService {
         reviewRepository.save(review);
 
         updateHospitalRate(hospitalId);
+        updateHowManyReviews(hospitalId);
     }
 
     //리뷰 내용 업데이트
@@ -51,7 +52,9 @@ public class ReviewService {
         );
         review.update(reviewRequestDto);
 
-        updateHospitalRate(review.getHospitalId());
+        Long hospitalId = review.getHospitalId();
+        updateHospitalRate(hospitalId);
+        updateHowManyReviews(hospitalId);
     }
 
     //리뷰 삭제
@@ -71,6 +74,13 @@ public class ReviewService {
         int reviewCount = reviewList.size();
         float hospitalAverageRate = hospitalRateSum / reviewCount;
         hospital.updateHospitalRate(hospitalAverageRate);
+    }
+
+    public void updateHowManyReviews(Long hospitalId) {
+        Hospital hospital = hospitalRepository.getById(hospitalId);
+        List<Review> reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
+        int reviewCount = reviewList.size();
+        hospital.updateHowManyReviews(reviewCount);
     }
 
 

@@ -32,6 +32,9 @@ public class Hospital {
     @Column(nullable = false)
     private String hospitalNumber;
 
+    @Column(nullable = false)
+    private int howManyReviews;
+
     @OneToMany
     private List<HospitalImage> hospitalImageList;
 
@@ -41,6 +44,12 @@ public class Hospital {
     public void updateHospitalRate(float hospitalAverageRate) {
         this.hospitalRate = hospitalAverageRate;
     }
+
+    public void updateHowManyReviews(int howManyReviews) {
+        this.howManyReviews = howManyReviews;
+    }
+
+
     public String getHospitalName(){
         return this.hospitalName;
     }
