@@ -29,6 +29,7 @@ public class ReviewService {
     }
 
     //리뷰 저장
+    @Transactional
     public void saveReview(ReviewRequestDto reviewRequestDto, Long hospitalId, Long userId) {
         reviewRequestDto.setHospitalId(hospitalId);
         reviewRequestDto.setUserId(userId);
@@ -60,7 +61,6 @@ public class ReviewService {
     }
 
     //리뷰 별점 변경 시 병원 평점 업데이트 기능
-    @Transactional
     public void updateHospitalRate(Long hospitalId) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
         List<Review> reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
