@@ -2,15 +2,18 @@ package com.sparta.mungmung.service;
 
 import com.sparta.mungmung.domain.Hospital;
 import com.sparta.mungmung.domain.Review;
+import com.sparta.mungmung.domain.User;
 import com.sparta.mungmung.dto.ReviewRequestDto;
 import com.sparta.mungmung.exception.ApiRequestException;
 import com.sparta.mungmung.repository.HospitalRepository;
 import com.sparta.mungmung.repository.ReviewRepository;
+import com.sparta.mungmung.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,7 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final HospitalRepository hospitalRepository;
+    private final UserRepository userRepository;
 
      //리뷰 목록 조회
     public List<Review> findReview(Long hospitalId) {
@@ -28,6 +32,9 @@ public class ReviewService {
     public void saveReview(ReviewRequestDto reviewRequestDto, Long hospitalId, Long userId) {
         reviewRequestDto.setHospitalId(hospitalId);
         reviewRequestDto.setUserId(userId);
+        Optional<User> user = userRepository.findById(userId);
+        reviewRequestDto.setDogImage(user.get().getDogImage());
+
         Review review = new Review(reviewRequestDto);
         reviewRepository.save(review);
 
