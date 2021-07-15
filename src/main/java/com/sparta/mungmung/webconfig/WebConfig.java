@@ -10,9 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // 모든 uri에 대해 http://localhost:18080, http://localhost:8180 도메인은 접근을 허용한다.
+        // 모든 uri에 대해 http://localhost:3000, http://munghospital.shop/ 도메인은 접근을 허용한다.
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000","http://localhost:8180")
+                .allowedOrigins("http://localhost:3000","http://munghospital.shop/")
                 .allowedMethods(
                 HttpMethod.GET.name(),
                 HttpMethod.HEAD.name(),
