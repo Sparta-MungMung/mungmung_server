@@ -28,10 +28,11 @@ public class User extends TimeStamped {
     @Column(nullable = false)
     private String password;
 
-    public User(String userName, String password, String dogName){
+    public User(String userName, String password, String dogName, String dogImage){
         this.userName = userName;
         this.dogName = dogName;
         this.password = password;
+        this.dogImage = dogImage;
     }
 
     public void update(UserRequestDto requestDto){
