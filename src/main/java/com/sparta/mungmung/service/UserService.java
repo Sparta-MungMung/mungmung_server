@@ -54,7 +54,8 @@ public class UserService {
         // 패스워드 인코딩
         password = passwordEncoder.encode(password);
 
-        User user = new User(username,password,dogName);
+        String defaultDogImage = "https://hyunjung.s3.ap-northeast-2.amazonaws.com/dog.png";
+        User user = new User(username,password,dogName,defaultDogImage);
         userRepository.save(user);
 
 
