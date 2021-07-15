@@ -63,11 +63,11 @@ public class ReviewService {
         reviewRepository.deleteById(reviewId);
     }
 
-    //리뷰 별점 변경 시 병원 평점 업데이트 기능
+    //리뷰 별점 변경 시 병원 평점 업데이트
     public void updateHospitalRate(Long hospitalId) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
         List<Review> reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
-        int hospitalRateSum = 0;
+        float hospitalRateSum = 0;
         for(Review review: reviewList){
             hospitalRateSum += review.getHospitalRate();
         }
@@ -76,6 +76,7 @@ public class ReviewService {
         hospital.updateHospitalRate(hospitalAverageRate);
     }
 
+    //리뷰 개수 업데이트
     public void updateHowManyReviews(Long hospitalId) {
         Hospital hospital = hospitalRepository.getById(hospitalId);
         List<Review> reviewList = reviewRepository.findAllByHospitalIdOrderByModifiedAtDesc(hospitalId);
