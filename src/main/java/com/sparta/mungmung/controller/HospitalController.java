@@ -23,7 +23,7 @@ public class HospitalController {
     //병원 목록 조회
     @GetMapping("/hospitals")
     public List<Hospital> getHospitalList() {
-        return hospitalRepository.findAll();
+        return hospitalRepository.findAllByOrderByHowManyReviewsDesc();
     }
 
     //병원 상세 조회
