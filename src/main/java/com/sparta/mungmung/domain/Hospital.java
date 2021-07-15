@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
+
 @NoArgsConstructor
 @Getter
+@Entity
 public class Hospital {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +33,27 @@ public class Hospital {
     private String hospitalNumber;
 
     @Column(nullable = false)
-    private String hospitalImageSource;
+    private int howManyReviews;
+
+    @OneToMany
+    private List<HospitalImage> hospitalImageList;
+
+    @ManyToMany
+    private List<Subject> subjectList;
+
+    public void updateHospitalRate(float hospitalAverageRate) {
+        this.hospitalRate = hospitalAverageRate;
+    }
+
+    public void updateHowManyReviews(int howManyReviews) {
+        this.howManyReviews = howManyReviews;
+    }
+
+
+    public String getHospitalName(){
+        return this.hospitalName;
+    }
+
 
 
 }

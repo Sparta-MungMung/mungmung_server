@@ -1,5 +1,6 @@
 package com.sparta.mungmung.domain;
 
+import com.sparta.mungmung.dto.ReviewRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Review {
+public class Review extends TimeStamped {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -19,9 +20,31 @@ public class Review {
     private String reviewContent;
 
     @Column(nullable = false)
-    private Long postId;
+    private Long hospitalId;
 
     @Column(nullable = false)
     private Long userId;
 
+    @Column(nullable = false)
+    private String dogImage;
+
+    @Column(nullable = false)
+    private String dogName;
+
+    @Column(nullable = false)
+    private Long hospitalRate;
+
+    public Review(ReviewRequestDto reviewRequestDto) {
+        this.reviewContent = reviewRequestDto.getReviewContent();
+        this.hospitalId = reviewRequestDto.getHospitalId();
+        this.userId = reviewRequestDto.getUserId();
+        this.hospitalRate = reviewRequestDto.getHospitalRate();
+        this.dogImage = reviewRequestDto.getDogImage();
+        this.dogName = reviewRequestDto.getDogName();
+    }
+
+    public void update(ReviewRequestDto reviewRequestDto) {
+        this.reviewContent = reviewRequestDto.getReviewContent();
+        this.hospitalRate = reviewRequestDto.getHospitalRate();
+    }
 }
